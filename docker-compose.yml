@@ -1,22 +1,15 @@
 version: "3.8"
 services:
-  app:
-    build: ./app/
-    depends_on:
-      db:
-        condition: service_healthy
-    links:
-      - db
   db:
     image: postgres:latest
     ports:
-      - 5434:5432
+      - 5432:5432
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: testdb
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: library
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./scripts_db/DDL/init.sql:/docker-entrypoint-initdb.d/init.sql  # создаём таблицы БД
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "postgres"]
       interval: 5s
