@@ -9,7 +9,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: library
     volumes:
-      - ./scripts_db/DDL/init.sql:/docker-entrypoint-initdb.d/init.sql  # создаём таблицы БД
+      - ./ddl-init.sql:/docker-entrypoint-initdb.d/init.sql  # создаём таблицы БД
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "postgres"]
       interval: 5s
