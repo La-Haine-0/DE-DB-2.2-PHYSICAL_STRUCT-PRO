@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS cities (
 );
 CREATE TABLE IF NOT EXISTS publishing_houses_cities (
     publishing_houses_cities_id uuid PRIMARY KEY,
-    publishing_houses_id,
+    publishing_houses_id uuid,
     city_id uuid,
     FOREIGN KEY (city_id) REFERENCES cities (city_id) ON DELETE SET NULL,
     FOREIGN KEY (publishing_houses_id) REFERENCES publishing_houses (publishing_houses_id) ON DELETE SET NULL
